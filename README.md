@@ -1,44 +1,4 @@
 # Weather-chatbot
-import requests
-
-def get_weather(location):
-    api_key = "2e0c3e85d117fff2ea8485bb91556421"
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
-    params = {
-        "q": location,
-        "appid": api_key,
-        "units": "metric"  # Get temperature in Celsius
-    }
-    response = requests.get(base_url, params=params)
-    data = response.json()
-
-    if response.status_code == 200:
-        temperature = data["main"]["temp"]
-        humidity = data["main"]["humidity"]
-        wind_speed = data["wind"]["speed"]
-        weather_description = data["weather"][0]["description"]
-
-        return temperature, humidity, wind_speed, weather_description
-    else:
-        return None
-
-def generate_response(location, temperature, humidity, wind_speed, weather_description):
-    if temperature is None:
-        return "Sorry, I couldn't retrieve the weather information for that location."
-
-    response = f"The weather in {location} is {weather_description}. "
-    response += f"The temperature is {temperature}°C, humidity is {humidity}%, "
-    response += f"and wind speed is {wind_speed} m/s."
-    return response
-
-def main():
-    location = input("Enter a location: ")
-    weather_data = get_weather(location)
-
-    temperature, humidity, wind_speed, weather_description = weather_data
-
-    response = generate_response(location, temperature, humidity, wind_speed, weather_description)
-    print(response)
-
-if __name__ == "__main__":
-    main()
+ Overview:
+The weather chatbot is designed to give users instant access to real-time weather data and forecasts. With OpenWeather API's comprehensive weather database, any user can get responses from the bot.
+It is an intelligent chatbot capable of providing real-time weather information and forecasts. It uses NLP(natural language processing)to understand user queries and deliver responses.
